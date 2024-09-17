@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/")
-      .then((response) => {
-        setMessage(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data!", error);
-      });
-  }, []);
-
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">{message}</h1>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        {/* Add more routes as needed */}
+      </Routes>
+      <Footer />
     </div>
   );
 }
